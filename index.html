@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>jQuery Pictip Plugin</title>
+        <meta name="description" content="PicTip Plugin. jQuery Plugin to create interactive descriptions for images.">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/prettify.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/pictip.css">
+
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        <script src="js/vendor/prettify.js" ></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="header-container">
+            <header class="wrapper clearfix">
+                <h1 class="title">jQuery PicTip Plugin (beta)</h1>
+                <!--<nav>
+                    <ul>
+                        <li><a href="#">Download</a></li>
+                    </ul>-->
+                </nav>
+            </header>
+        </div>
+
+        <div class="main-container">
+            <div class="main wrapper clearfix">
+
+                <article>
+                    <header>
+                        <h1>Overview</h1>
+                        <p>jQuery PicTip is a plugin that adds handy tooltips to your images, slideshows, sliders and more. </p>
+                    </header>
+                    <section>
+                        <h2>Features</h2>
+                        <ul>
+                            <li>Easy configuration and customization</li>
+                            <li>Easy integration with slideshows, sliders, 360 views, and more</li>
+                            <li>Support for captions and bubble tooltips</li>
+                            <li>Add any content type to tooltips/captions</li>
+                            <li>Event type options (hover/click)</li>
+                            <li>Change tooltip position relative to spot</li>
+                            <li>Create spots with your own HTML markup</li>
+                            <li>Very small in size (just 11KB)</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h1>How it Works</h1>
+                        <p>PicTip provides a simple way to initialize the plugin, just call the method pictip() on a jQuery element. This method accept an options object. Let me show you an example:</p>
+
+                        <h2>The HTML</h2>
+                        <pre class="prettyprint lang-html prettyprinted">&lt;div id="pictip-demo"&gt; &lt;/div&gt;</pre>
+
+                        <h2>The CSS</h2>
+                        <pre class="prettyprint lang-css prettyprinted">
+#pictip-demo{
+    position: relative;
+}
+                        </pre>
+
+                        <table>
+                            <caption>Use the following clases for customization:</caption>
+                            <tbody>
+                                <tr>
+                                  <td class="headings">spot</td>
+                                  <td>Spot class</td>
+                                </tr>
+                                <tr>
+                                  <td class="headings">spot-{index}</td>
+                                  <td>Class containing the spot indetifier (spot-0, spot-1, etc)</td>
+                                </tr>
+                                <tr>
+                                  <td class="headings">spot-open</td>
+                                  <td>Class assigned to the spot when the related tooltip is open</td>
+                                </tr>
+                                <tr>
+                                  <td class="headings">spot-tooltip</td>
+                                  <td>Tooltip class</td>
+                                </tr>
+                                <tr>
+                                  <td class="headings">spot-tooltip-{index}</td>
+                                  <td>Class containing the tooltip indetifier (spot-tooltip-0, spot-tooltip-1, etc)</td>
+                                </tr>
+                                <tr>
+                                  <td class="headings">spot-tooltip-close</td>
+                                  <td>Class assigned to the tooltip close link</td>
+                                </tr>
+                                <tr>
+                                  <td class="headings">spot-tooltip-content</td>
+                                  <td>Class assigned to the tooltip content container</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <h2>The JavaScript</h2>
+                        <pre class="prettyprint lang-js prettyprinted">
+$("#pictip-demo").pictip({
+    spots: [
+        { 
+            top: '50px', 
+            left: '20px', 
+            content: 'Hello!', 
+            tooltipPosition:'br' //bottom-right
+        }
+    ]
+});
+                        </pre>
+
+                        <table>
+                            <caption>The complete set of options:</caption>
+                            <tbody>
+                                <tr>
+                                  <td class="headings">spots [ Array: [] ]</td>
+                                  <td>Spots object array. Refer to the next table for more information.</td>
+                                </tr>
+                                <tr>
+                                  <td class="headings">spotClass [ String: '.spot' ]</td>
+                                  <td>Spots class.</td>
+                                </tr>
+                                <tr>
+                                  <td class="headings">spotTemplate [ String: '&lt;a&gt;&lt;/a&gt;' ]</td>
+                                  <td>HTML template to create the spots.</td>
+                                </tr>
+                                <tr>
+                                  <td class="headings">eventType [ String: 'click' ]</td>
+                                  <td>Event type to trigger the tooltip/caption display action (posible values are click and hover).</td>
+                                </tr>
+                                <tr>
+                                  <td class="headings">tooltip [ Boolean: true ]</td>
+                                  <td>Display tooltip or caption? (use caption for a better mobile experience).</td>
+                                </tr>
+                                <tr>
+                                  <td class="headings">onShowToolTip [ Function: function (spot, tooltip) {} ]</td>
+                                  <td>Function executed after the tooltip has opened</td>
+                                </tr>
+                                <tr>
+                                  <td class="headings">onCloseToolTip [ Function: function (spot, tooltip) {} ]</td>
+                                  <td>Function executed after the tooltip has closed</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <p>So, spots object array?</p>
+                        <table>
+                            <caption>The spots set of options:</caption>
+                            <tbody>
+                                <tr>
+                                  <td class="headings">top [ Number: 0 ]</td>
+                                  <td>Spot top position</td>
+                                </tr>
+                                <tr>
+                                  <td class="headings">left [ Number: 0 ]</td>
+                                  <td>Spot left position</td>
+                                </tr>
+                                <tr>
+                                  <td class="headings">content [ String: '' ]</td>
+                                  <td>Tooltip content</td>
+                                </tr>
+                                <tr>
+                                  <td class="headings">tooltipPosition [ String: '' ]</td>
+                                  <td>Tooltip position relative to spot. (tl, tr, tc, bl, br, bc, cl, cr)</td>
+                                </tr>
+                                <tr>
+                                  <td class="headings">tooltipId [ String: '' ]</td>
+                                  <td>Tooltip ID</td>
+                                </tr>
+                                <tr>
+                                  <td class="headings">tooltipCss [ Object: {} ]</td>
+                                  <td>CSS styling for the tooltip</td>
+                                </tr>
+                                <tr>
+                                  <td class="headings">tooltipClose [ Boolean: false ]</td>
+                                  <td>Set this to true if you want the tooltip close link</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <h2>The API</h2>
+                        <p>Accessing the PicTip instance.</p>
+                        <pre class="prettyprint lang-js prettyprinted">
+// You can access the instance with:
+var pictip = $("#pictip-demo").data('pictip');
+                        </pre>
+
+                        <table>
+                            <caption>You can access the following methods of the instance: </caption>
+                            <tbody>
+                                <tr>
+                                  <td class="headings">init [ Function: function (options) {...} ]</td>
+                                  <td>Initialize the plugin instance</td>
+                                </tr>
+                                <tr>
+                                  <td class="headings">closeToolTips [ Function: function () {...} ]</td>
+                                  <td>Close all open tooltips</td>
+                                </tr>
+                                <tr>
+                                  <td class="headings">destroy [ Function: function () {...} ]</td>
+                                  <td>Destroy the plugin instance</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>Yes I know this is easy!</p>
+                        
+                        <h2>Browser compatibility</h2>
+                        <ul>
+                            <li>IE 8+</li>
+                            <li>Firefox</li>
+                            <li>Opera</li>
+                            <li>Safari</li>
+                            <li>Chrome</li>
+                        </ul>
+
+                    </section>
+
+                </article>
+
+                <aside>
+                    <h3>Demo</h3>
+                    <div id="pictip-demo">
+                        <img src="img/sunset.JPG" alt="Costa Rica Sunset">
+                    </div>
+                </aside>
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+        <div class="footer-container">
+            <footer class="wrapper">
+                <h3>jQuery PicTip Plugin</h3>
+                <p>
+                    <b>Licence:</b>
+                    Dual licensed under the <a href="http://opensource.org/licenses/mit-license.php">MIT</a> and <a href="http://opensource.org/licenses/gpl-license.php">GPL</a> licenses.
+                </p>
+                <p>By: Daniel Fernández</p>
+            </footer>
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+        <script src="js/jquery.pictip.js" ></script>
+        <script src="js/main.js"></script>
+
+        <script>
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-37854450-4']);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+    </body>
+</html>
