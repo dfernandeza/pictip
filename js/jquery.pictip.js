@@ -1,5 +1,5 @@
 /*
- * jQuery picTip Plugin
+ * jQuery PicTip Plugin
  * Copyright (c) 2013
  * Version: 0.1.0
  * Author: Daniel Fernandez Arias @dfernandeza

@@ -5,40 +5,22 @@
 	width: 15px;
 	height: 15px;
 	display: block;
-	border-radius: 10px;
+    -webkit-border-radius: 10px;
+            border-radius: 10px;
+    -webkit-background-clip: padding-box; background-clip: padding-box;
 	background: #409F89;
 	z-index: 1;
-
-	text-align: center;
-	text-decoration: none;
-	color: #fff;
-	font-weight: bold;
 }
 .spot-tooltip{
-	width: 110px;
-	height: 35px;
 	font-size: .75em;
 	color: #222;
-	text-align: center;
 	background: #fff;
-	background-color: rgba(255, 255, 255, 0.75);
+	background: rgba(255, 255, 255, 0.75);
+	padding: 5px;
 	position: absolute;
-	display: none;
-	z-index: 1;
-  -webkit-border-radius: 5px;
+    -webkit-border-radius: 5px;
           border-radius: 5px;
-  -webkit-background-clip: padding-box; background-clip: padding-box;
-
-}
-.spot-tooltip img{ 
-	width: 100%; 
-}
-.spot-tooltip h1{ 
-	font-size: 14px; 
-}
-.spot-tooltip-close{
-	float: right;
-	clear: both;
+    -webkit-background-clip: padding-box; background-clip: padding-box;
 }
 .spot-open{
 	background-color: #2D2A26;
