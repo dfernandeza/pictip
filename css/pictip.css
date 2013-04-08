@@ -21,6 +21,7 @@
     -webkit-border-radius: 5px;
           border-radius: 5px;
     -webkit-background-clip: padding-box; background-clip: padding-box;
+    display: none;
 }
 .spot-open{
 	background-color: #2D2A26;
