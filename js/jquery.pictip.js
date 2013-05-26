@@ -1,7 +1,7 @@
 /*
  * jQuery PicTip Plugin
  * Copyright (c) 2013
- * Version: 0.2.0
+ * Version: 0.2.1
  * Author: Daniel Fernandez Arias @dfernandeza
  *
  * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) 
@@ -46,10 +46,16 @@
      * @param onShow callback function. Executed after the tooltip is opened
      */
     Spot.prototype.openToolTip = function (onShow) {
-        var index = this.index;
+        var index = this.index,
+            $spot = $('.spot-' + index),
+            $tooltip = $('.spot-tooltip-' + index);
+        
+        // set tooltip coords
+        $tooltip.css(this.tooltip.getCoords($spot, $tooltip));
+
         // TODO: refactor to support different types of animations
-        $('.spot-tooltip-' + index).fadeIn(200, function () {
-            onShow($('.spot-' + index)[0], this);
+        $tooltip.fadeIn(200, function () {
+            onShow($spot[0], this);
         });
     };
 
@@ -82,10 +88,9 @@
     /**
     * Creates the tooltip DOM element
     * @param isbubble tooltipe type (caption/bubble)
-    * @param $spot related spot DOM element (wrapped in a jQuery object)
     * @return the tooltip DOM element (wrapped in a jQuery object)
     */
-    ToolTip.prototype.create = function (isbubble, $spot) {
+    ToolTip.prototype.create = function (isbubble) {
         var $tt = $('<div/>', {
                 'id': this.id,
                 'class': 'spot-tooltip spot-tooltip-' + this.index
@@ -102,9 +107,7 @@
         $ttContent.html(this.content);
         $tt.append($ttClose, $ttContent).data('index', this.index);
         // style the tooltip
-        if (isbubble) {
-            pluginCss = this.getCoords($spot, $tt);
-        } else {
+        if (!isbubble) {
             pluginCss = {top: 0, left: 0, width: '100%'}; // use captions instead of bubble tooltips
         }
         customCss = $.extend(pluginCss, this.css); // user adds custom css
@@ -114,12 +117,12 @@
 
     /**
     * Calculates the tooltip position. Relative to the spot position.
-    * @param $spot    spot element (wrapped in a jQuery object) 
+    * @para    spot element (wrapped in a jQuery object) 
     * @param $tooltip tooltip element (wrapped in a jQuery object) 
     * @return object containing the top and left position
     */
     ToolTip.prototype.getCoords = function ($spot, $tooltip) {
-        var spot = $spot[0], tooltip = $tooltip[0], top = 0, left = 0,
+        var spot = $spot[0], top = 0, left = 0,
             position = this.position,
             // Spot positioning
             spotTop = parseInt(spot.style.top, 10),
@@ -188,6 +191,7 @@
                 var self = this;
                 // close tooltips when click the parent element
                 $el.on('click', function (e) {
+                    e.preventDefault();
                     self.closeToolTips();
                 });
                 // prevent to close the tooltip when clicked because of the event propagation
@@ -257,7 +261,8 @@
                 spotTemplate = $(opts.spotTemplate).addClass(spotClass.replace('.', '')),
                 spot = null,
                 $spot = null,
-                tooltip = null;
+                tooltip = null,
+                $tooltip;
             for (i = 0; i < opts.spots.length; i++) {
                 spot = new Spot(i, opts.spots[i]);
                 tooltip = new ToolTip(i, opts.spots[i]);
@@ -265,9 +270,11 @@
                 $spot = spot.create(i, spotTemplate);
                 spots.push(spot);
                 $spots.push($spot);
-                $tooltips.push(tooltip.create(opts.tooltip, $spot));
+                $tooltip = tooltip.create(opts.tooltip);
+                $tooltips.push($tooltip);
             }
             $el.append($spots, $tooltips);
+
             $(spotClass).fadeIn(200); // show spots
             attachEventHandlers.call(this);
         };

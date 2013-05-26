@@ -1,4 +1,3 @@
-
 prettyPrint();
 
 $("#pictip-demo").pictip({
