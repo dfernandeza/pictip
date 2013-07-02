@@ -1,0 +1,35 @@
+{
+    "name": "pictip",
+    "title": "jQuery PicTip",
+    "description": "jQuery PicTip is a plugin that adds handy tooltips to your images, slideshows, sliders and more.",
+    "keywords": [
+        "image",
+        "slider",
+        "slideshow",
+        "ui",
+        "tooltip",
+        "gallery",
+        "effect"
+    ],
+    "version": "0.2.1",
+    "author": {
+        "name": "Daniel Fernández A.",
+        "url": "https://github.com/dfernandeza/"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://opensource.org/licenses/mit-license.php"
+        },
+        {
+            "type": "GPL",
+            "url": "http://www.opensource.org/licenses/gpl-license.php"  
+        }
+    ],
+    "bugs": "https://github.com/dfernandeza/pictip/issues",
+    "homepage": "https://github.com/dfernandeza/pictip",
+    "docs": "https://github.com/dfernandeza/pictip",
+    "dependencies": {
+        "jquery": ">=1.8.3"
+    }
+}
