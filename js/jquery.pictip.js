@@ -1,7 +1,7 @@
 /*
  * jQuery PicTip Plugin
  * Copyright (c) 2013
- * Version: 0.2.1
+ * Version: 0.2.2
  * Author: Daniel Fernandez Arias @dfernandeza
  *
  * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) 
@@ -34,8 +34,7 @@
             top: this.top,
             left: this.left,
             display: 'none'
-        }).addClass('spot-' + index);
-        $spot.data({
+        }).addClass('spot-' + index).data({
             'index': index
         });
         return $spot;
@@ -49,10 +48,10 @@
         var index = this.index,
             $spot = $('.spot-' + index),
             $tooltip = $('.spot-tooltip-' + index);
-        
-        // set tooltip coords
-        $tooltip.css(this.tooltip.getCoords($spot, $tooltip));
-
+        if (this.tooltip.isbubble) {
+            // set tooltip coords
+            $tooltip.css(this.tooltip.getCoords($spot, $tooltip));
+        }
         // TODO: refactor to support different types of animations
         $tooltip.fadeIn(200, function () {
             onShow($spot[0], this);
@@ -60,9 +59,9 @@
     };
 
     /**
-    * Close the spot related tooltip
-    * @param onClose callback function. Executed after the tooltip is closed
-    */
+     * Close the spot related tooltip
+     * @param onClose callback function. Executed after the tooltip is closed
+     */
     Spot.prototype.closeToolTip = function (onClose) {
         var index = this.index, $spot = $('.spot-' + index);
         $spot.removeClass('spot-open');
@@ -72,25 +71,26 @@
     };
 
     /**
-    * Creates a ToolTip instance
-    * @param index tooltip identifier
-    * @param conf literal object containing the tooltip configuration
-    */
-    var ToolTip = function (index, conf) {
+     * Creates a ToolTip instance
+     * @param index tooltip identifier
+     * @param conf literal object containing the tooltip configuration
+     * @param isbubble tooltipe type (caption/bubble)
+     */
+    var ToolTip = function (index, conf, isbubble) {
         this.index = index;
         this.position = conf.tooltipPosition; // tooltip position (tl, tr, tc, bl, br, bc, cl, cr)
         this.id = conf.tooltipId;
         this.css = conf.tooltipCss;
         this.close = conf.tooltipClose; // add the close link?
         this.content = conf.content;
+        this.isbubble = isbubble;
     };
 
     /**
-    * Creates the tooltip DOM element
-    * @param isbubble tooltipe type (caption/bubble)
-    * @return the tooltip DOM element (wrapped in a jQuery object)
-    */
-    ToolTip.prototype.create = function (isbubble) {
+     * Creates the tooltip DOM element
+     * @return the tooltip DOM element (wrapped in a jQuery object)
+     */
+    ToolTip.prototype.create = function () {
         var $tt = $('<div/>', {
                 'id': this.id,
                 'class': 'spot-tooltip spot-tooltip-' + this.index
@@ -107,7 +107,7 @@
         $ttContent.html(this.content);
         $tt.append($ttClose, $ttContent).data('index', this.index);
         // style the tooltip
-        if (!isbubble) {
+        if (!this.isbubble) {
             pluginCss = {top: 0, left: 0, width: '100%'}; // use captions instead of bubble tooltips
         }
         customCss = $.extend(pluginCss, this.css); // user adds custom css
@@ -116,17 +116,18 @@
     };
 
     /**
-    * Calculates the tooltip position. Relative to the spot position.
-    * @para    spot element (wrapped in a jQuery object) 
-    * @param $tooltip tooltip element (wrapped in a jQuery object) 
-    * @return object containing the top and left position
-    */
+     * Calculates the tooltip position. Relative to the spot position.
+     * @para    spot element (wrapped in a jQuery object) 
+     * @param $tooltip tooltip element (wrapped in a jQuery object) 
+     * @return object containing the top and left position
+     */
     ToolTip.prototype.getCoords = function ($spot, $tooltip) {
-        var spot = $spot[0], top = 0, left = 0,
+        var top = 0, left = 0,
             position = this.position,
             // Spot positioning
-            spotTop = parseInt(spot.style.top, 10),
-            spotLeft = parseInt(spot.style.left, 10),
+            spotPosition = $spot.position(),
+            spotTop = spotPosition.top,
+            spotLeft = spotPosition.left,
             // Spot dimentions
             spotHeight = $spot.outerHeight(),
             spotWidth = $spot.outerWidth(),
@@ -202,7 +203,7 @@
                 $el.on('click', '.spot-tooltip-close', function (e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    $(opts.spotClass).removeClass('spot-open');
+                    $el.find(opts.spotClass).removeClass('spot-open');
                     // TODO: refactor to support different types of animations
                     $(this).parent('.spot-tooltip').fadeOut(200, function () {
                         spots[$(this).data('index')].closeToolTip(opts.onCloseToolTip);
@@ -213,19 +214,19 @@
                     e.preventDefault();
                     e.stopPropagation();
                     var $this = $(this),
-                        $tooltip = $('.spot-tooltip-' + $this.data('index'));
+                        $tooltip = $el.find('.spot-tooltip-' + $this.data('index'));
                     // TODO: should be refactored to support more than one open tooltip (if !allowMultipleToolTips)
-                    $('.spot-tooltip').not($tooltip).fadeOut(200);
+                    $el.find('.spot-tooltip').not($tooltip).fadeOut(200);
                     opts.onCloseToolTip($('.spot-open')[0], $('.spot-tooltip')[0]);
 
-                    $(opts.spotClass).not($this).removeClass('spot-open');
+                    $el.find(opts.spotClass).not($this).removeClass('spot-open');
                     if (!$this.hasClass('spot-open')) {
                         // open the tooltip
                         spots[$this.data('index')].openToolTip(opts.onShowToolTip);
                     } else {
                         // close the tooltip
                         $tooltip.fadeOut(200);
-                        opts.onCloseToolTip($this[0], $tooltip[0]);
+                        opts.onCloseToolTip(this, $tooltip[0]);
                     }
                     $this.toggleClass('spot-open');
                 });
@@ -236,7 +237,7 @@
          */
         this.closeToolTips = function () {
             $(opts.spotClass).removeClass('spot-open');
-            $('.spot-tooltip').fadeOut(200, function () { // refactor to support different animations
+            $el.find('.spot-tooltip').fadeOut(200, function () { // refactor to support different animations
                 var index = $(this).data('index');
                 opts.onCloseToolTip($('.spot-' + index)[0], this);
             });
@@ -247,8 +248,8 @@
         this.destroy = function () {
             this.closeToolTips();
             $el.off('click').off(opts.eventType);
-            $(opts.spotClass).remove();
-            $('.spot-tooltip').remove();
+            $el.find(opts.spotClass).remove();
+            $el.find('.spot-tooltip').remove();
         };
         /**
          * Initialize the plugin instance
@@ -257,25 +258,25 @@
         this.init = function (options) {
             opts = $.extend({}, $.fn.pictip.options, options);
             this.destroy(); // init a clean instance
-            var i = 0, $spots = [], $tooltips = [], spotClass = opts.spotClass,
-                spotTemplate = $(opts.spotTemplate).addClass(spotClass.replace('.', '')),
+            var i = 0, $spots = [], $tooltips = [],
+                spotTemplate = $(opts.spotTemplate).addClass(opts.spotClass.replace('.', '')),
                 spot = null,
                 $spot = null,
                 tooltip = null,
                 $tooltip;
             for (i = 0; i < opts.spots.length; i++) {
                 spot = new Spot(i, opts.spots[i]);
-                tooltip = new ToolTip(i, opts.spots[i]);
+                tooltip = new ToolTip(i, opts.spots[i], opts.tooltip);
                 spot.tooltip = tooltip;
                 $spot = spot.create(i, spotTemplate);
                 spots.push(spot);
                 $spots.push($spot);
-                $tooltip = tooltip.create(opts.tooltip);
+                $tooltip = tooltip.create();
                 $tooltips.push($tooltip);
             }
             $el.append($spots, $tooltips);
 
-            $(spotClass).fadeIn(200); // show spots
+            $el.find(opts.spotClass).fadeIn(200); // show spots
             attachEventHandlers.call(this);
         };
         // Expose the instance
@@ -299,5 +300,5 @@
         onShowToolTip: function (spot, tooltip) {}, // function executed after the tooltip is displayed
         onCloseToolTip: function (spot, tooltip) {} // function executed after the tooltip is closed
     };
-
+    
 })(jQuery);

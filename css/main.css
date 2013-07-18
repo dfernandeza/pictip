@@ -133,7 +133,7 @@ nav a:hover {
 
 .main aside {
     color: white;
-    padding: 0px 5% 20px;
+    padding: 0px 2% 20px;
 }
 
 .footer-container footer {
@@ -144,10 +144,6 @@ nav a:hover {
 /* ===============
     ALL: IE Fixes
    =============== */
-
-.ie7 .title {
-    padding-top: 20px;
-}
 
 /* ==========================================================================
    Author's custom styles
@@ -185,6 +181,13 @@ footer a{
     color: #fff;
 }
 
+.twitter{
+    background: #00aced;
+    text-decoration: none;
+    padding: 5px;
+    font-size: .80em;
+}
+
 /* ==========================================================================
    Media Queries
    ========================================================================== */
@@ -197,7 +200,7 @@ footer a{
 
     nav a {
         float: left;
-        width: 27%;
+        width: 42%;
         margin: 0 1.7%;
         padding: 25px 2%;
         margin-bottom: 0;
@@ -224,7 +227,7 @@ footer a{
     }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 900px) {
 
 /* ====================
     WIDE: CSS3 Effects
@@ -261,7 +264,6 @@ footer a{
 
     .main aside {
         float: right;
-        width: 28%;
     }
 }
 

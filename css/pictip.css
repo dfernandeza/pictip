@@ -1,4 +1,6 @@
 #pictip-demo{
+	width: 288px;
+	margin: auto;
 	position: relative;
 }
 .spot{
@@ -22,8 +24,9 @@
           border-radius: 5px;
     -webkit-background-clip: padding-box; background-clip: padding-box;
     display: none;
+    box-sizing: border-box;
 }
 .spot-open{
-	background-color: #2D2A26;
+	background-color: #e44d26;
 	z-index: 2;
 }
