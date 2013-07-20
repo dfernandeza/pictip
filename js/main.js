@@ -7,8 +7,12 @@ $("#pictip-demo").pictip({
 		{top: '65px', left: '165px', content: '<p>Perfect sunset!</p>', tooltipPosition:'bl'}
 	],
 	//tooltip: false,
-	onShowToolTip: function(spot, tooltip){},
+	onShowToolTip: function(spot, tooltip){
+		//console.log('Showing:');
+		//console.log(spot, tooltip);
+	},
 	onCloseToolTip: function(spot, tooltip){
+		//console.log('Closing:');
 		//console.log(spot, tooltip);
 	}
 });

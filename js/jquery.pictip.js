@@ -270,11 +270,12 @@
                 spot.tooltip = tooltip;
                 $spot = spot.create(i, spotTemplate);
                 spots.push(spot);
-                $spots.push($spot);
+                $spots.push($spot[0]);
                 $tooltip = tooltip.create();
-                $tooltips.push($tooltip);
+                $tooltips.push($tooltip[0]);
             }
-            $el.append($spots, $tooltips);
+
+            $el.append($spots.concat($tooltips));
 
             $el.find(opts.spotClass).fadeIn(200); // show spots
             attachEventHandlers.call(this);
@@ -301,4 +302,4 @@
         onCloseToolTip: function (spot, tooltip) {} // function executed after the tooltip is closed
     };
     
-})(jQuery);
+})(window.jQuery || window.Zepto);
