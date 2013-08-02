@@ -54,7 +54,9 @@
         }
         // TODO: refactor to support different types of animations
         $tooltip.fadeIn(200, function () {
-            onShow($spot[0], this);
+            if(typeof onShow === 'function'){
+                onShow($spot[0], this);
+            }
         });
     };
 
@@ -66,7 +68,9 @@
         var index = this.index, $spot = $('.spot-' + index);
         $spot.removeClass('spot-open');
         $('.tooltip-' + index).fadeOut(200, function () {
-            onClose($spot[0], this);
+            if(typeof onClose === 'function'){
+                onClose($spot[0], this);
+            }
         });
     };
 
@@ -138,37 +142,37 @@
             relocation = spotWidth / 2;
 
         // top positions
-        if (position === "tl") {
+        if (position === 'tl') {
             top = spotTop - tooltipHeight + relocation;
             left = spotLeft - tooltipWidth + relocation;
         }
-        if (position === "tr") {
+        if (position === 'tr') {
             top = spotTop - tooltipHeight + relocation;
             left = spotLeft + spotWidth - relocation;
         }
-        if (position === "tc") {
+        if (position === 'tc') {
             top = spotTop - tooltipHeight + relocation;
             left = spotLeft - (tooltipWidth / 2 - spotWidth / 2);
         }
         // bottom positions
-        if (position === "bl") {
+        if (position === 'bl') {
             top = spotTop +  spotHeight - relocation;
             left = spotLeft - tooltipWidth + relocation;
         }
-        if (position === "br") {
+        if (position === 'br') {
             top = spotTop +  spotHeight - relocation;
             left = spotLeft + spotWidth - relocation;
         }
-        if (position === "bc") {
+        if (position === 'bc') {
             top = spotTop +  spotHeight - relocation;
             left = spotLeft - (tooltipWidth / 2 - spotWidth / 2);
         }
         // center positions
-        if (position === "cl") {
+        if (position === 'cl') {
             top = spotTop -  (tooltipHeight / 2 - spotHeight / 2);
             left = spotLeft - tooltipWidth + relocation;
         }
-        if (position === "cr") {
+        if (position === 'cr') {
             top = spotTop -  (tooltipHeight / 2 - spotHeight / 2);
             left = spotLeft + spotWidth - relocation;
         }
@@ -217,7 +221,9 @@
                         $tooltip = $el.find('.spot-tooltip-' + $this.data('index'));
                     // TODO: should be refactored to support more than one open tooltip (if !allowMultipleToolTips)
                     $el.find('.spot-tooltip').not($tooltip).fadeOut(200);
-                    opts.onCloseToolTip($('.spot-open')[0], $('.spot-tooltip')[0]);
+                    if(typeof opts.onCloseToolTip === 'function'){
+                        opts.onCloseToolTip($('.spot-open')[0], $('.spot-tooltip')[0]);
+                    }
 
                     $el.find(opts.spotClass).not($this).removeClass('spot-open');
                     if (!$this.hasClass('spot-open')) {
@@ -226,7 +232,9 @@
                     } else {
                         // close the tooltip
                         $tooltip.fadeOut(200);
-                        opts.onCloseToolTip(this, $tooltip[0]);
+                        if(typeof opts.onCloseToolTip === 'function'){
+                            opts.onCloseToolTip(this, $tooltip[0]);
+                        }
                     }
                     $this.toggleClass('spot-open');
                 });
@@ -293,12 +301,12 @@
     // Default options
     $.fn.pictip.options = {
         spots: [], // spots array
-        spotClass: ".spot", // spots class
-        spotTemplate: "<a href='#'></a>", // HTML markup to create the spots
+        spotClass: '.spot', // spots class
+        spotTemplate: '<a href="#"></a>', // HTML markup to create the spots
         eventType: 'click', // type of event that trigger the tooltip/caption display action (click, hover)
         tooltip: true, // display tooltip/caption? (use caption for a better mobile experience) 
-        onShowToolTip: function (spot, tooltip) {}, // function executed after the tooltip is displayed
-        onCloseToolTip: function (spot, tooltip) {} // function executed after the tooltip is closed
+        onShowToolTip: null, // function executed after the tooltip is displayed: function(spot, tooltip){}
+        onCloseToolTip: null // function executed after the tooltip is closed: function(spot, tooltip){}
     };
     
 })(jQuery);

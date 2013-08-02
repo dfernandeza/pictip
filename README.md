@@ -13,7 +13,7 @@ Features
 - Event type options (hover/click)
 - Change tooltip position relative to spot
 - Create spots with your own HTML markup
-- Very small (just 4.5kb gzipped)
+- Very small (just 4kb minified)
 
 Getting Started
 ---------------
@@ -109,10 +109,23 @@ var pictip = $("#pictip-demo").data('pictip');
 
 Yes I know this is easy!
 
+## Changelog
+
+#### v0.2.1 
+
+- Initial version
+
+#### v0.2.2
+
+- Adding minor performance improvements (jQuery selectors)
+- Fixed caption functionality (tooltip: false)
+
 ## Contributing
 
 If you'd like to contribute to this project, create a branch and send a pull request for that branch.
 Lint and test your code.
+
+Any problems, please, let me know.
 
 ## License
 Copyright (c) 2013 Daniel Fernández A.

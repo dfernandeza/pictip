@@ -1,0 +1,32 @@
+{
+  "name": "pictip",
+  "version": "0.2.2",
+  "description": "Add handy tooltips to your images, slideshows, sliders and more",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dfernandeza/pictip.git"
+  },
+  "keywords": [
+    "tooltip",
+    "slider",
+    "images",
+    "jquery-plugin"
+  ],
+  "author": "Daniel Fernandez",
+  "license": "MIT and GPL",
+  "gitHead": "0f977ebda037443e7c367fc0b96e1365d602509e",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/dfernandeza/pictip/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-qunit": "~0.2.2",
+    "grunt-contrib-jshint": "~0.6.2"
+  }
+}
