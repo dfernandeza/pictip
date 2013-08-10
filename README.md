@@ -120,10 +120,15 @@ Yes I know this is easy!
 - Adding minor performance improvements (jQuery selectors)
 - Fixed caption functionality (tooltip: false)
 
+#### v0.2.3
+
+- Adding minor performance improvements to 'open' and 'close' tooltip functionality
+- Fixed 'onCloseToolTip' callback executing on first user interaction
+
 ## Contributing
 
 If you'd like to contribute to this project, create a branch and send a pull request for that branch.
-Lint and test your code.
+Hint and test your code.
 
 Any problems, please, let me know.
 

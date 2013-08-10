@@ -8,10 +8,10 @@ $('#pictip-demo').pictip({
 	],
 	//tooltip: false,
 	onShowToolTip: function(spot, tooltip){
-		console.log(spot, tooltip);
+		console.log('Opening...', spot, tooltip);
 	},
 	onCloseToolTip: function(spot, tooltip){
-		console.log(spot, tooltip);
+		console.log('Closing...', spot, tooltip);
 	}
 });
 

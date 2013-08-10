@@ -4,14 +4,15 @@
 	position: relative;
 }
 .spot{
-	width: 15px;
-	height: 15px;
+	width: 16px;
+	height: 16px;
 	display: block;
     -webkit-border-radius: 10px;
             border-radius: 10px;
     -webkit-background-clip: padding-box; background-clip: padding-box;
 	background: #409F89;
 	z-index: 1;
+	opacity: .75;
 }
 .spot-tooltip{
 	font-size: .75em;
@@ -29,4 +30,5 @@
 .spot-open{
 	background-color: #e44d26;
 	z-index: 2;
+	opacity: 1;
 }
