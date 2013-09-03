@@ -1,7 +1,7 @@
 /*
  * jQuery PicTip Plugin
  * Copyright (c) 2013
- * Version: 0.2.3
+ * Version: 0.2.4
  * Author: Daniel Fernandez Arias @dfernandeza
  *
  * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) 
@@ -9,7 +9,7 @@
  */
 
 (function ($) {
-    /** 
+    /**
      * Creates a Spot instance
      * @param index spot identifier
      * @param conf literal object containing the Spot configuration
@@ -43,12 +43,13 @@
 
     /**
      * Open the spot related tooltip
+     * @param $el    jQuery element where the plugin was instantiated 
      * @param onShow callback function. Executed after the tooltip is opened
      */
-    Spot.prototype.openToolTip = function (onShow) {
+    Spot.prototype.openToolTip = function ($el, onShow) {
         var index = this.index,
-            $spot = $('.spot-' + index),
-            $tooltip = $('.spot-tooltip-' + index);
+            $spot = $el.find('.spot-' + index),
+            $tooltip = $el.find('.spot-tooltip-' + index);
         this.open = true;
         $spot.addClass('spot-open');
         if (this.tooltip.isbubble) {
@@ -65,13 +66,14 @@
 
     /**
      * Close the spot related tooltip
+     * @param $el    jQuery element where the plugin was instantiated 
      * @param onClose callback function. Executed after the tooltip is closed
      */
-    Spot.prototype.closeToolTip = function (onClose) {
-        var index = this.index, $spot = $('.spot-' + index);
+    Spot.prototype.closeToolTip = function ($el, onClose) {
+        var index = this.index, $spot = $el.find('.spot-' + index);
         this.open = false;
         $spot.removeClass('spot-open');
-        $('.spot-tooltip-' + index).fadeOut(200, function () {
+        $el.find('.spot-tooltip-' + index).fadeOut(200, function () {
             if(typeof onClose === 'function'){
                 onClose($spot[0], this);
             }
@@ -211,7 +213,7 @@
                 $el.on('click', '.spot-tooltip-close', function (e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    spots[$(this).parent('.spot-tooltip').data('index')].closeToolTip(opts.onCloseToolTip);
+                    spots[$(this).parent('.spot-tooltip').data('index')].closeToolTip($el, opts.onCloseToolTip);
                 });
                 // attach spots event handler
                 $el.on(opts.eventType, opts.spotClass, function (e) {
@@ -223,10 +225,10 @@
                         // TODO: add a configuration option to allow more than one open tooltip at a time
                         self.closeToolTips();
                         // open the tooltip
-                        spots[$this.data('index')].openToolTip(opts.onShowToolTip);
+                        spots[$this.data('index')].openToolTip($el, opts.onShowToolTip);
                     } else {
                         // close the tooltip
-                        spots[$this.data('index')].closeToolTip(opts.onCloseToolTip);
+                        spots[$this.data('index')].closeToolTip($el, opts.onCloseToolTip);
                     }
                 });
             };
@@ -237,7 +239,7 @@
         this.closeToolTips = function () {
             for (var i = 0; i < spots.length; i++) {
                 if(spots[i].open){
-                    spots[i].closeToolTip(opts.onCloseToolTip);
+                    spots[i].closeToolTip($el, opts.onCloseToolTip);
                 }
             }
         };
