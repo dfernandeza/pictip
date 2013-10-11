@@ -177,6 +177,12 @@ td.headings{
     background: #409F89;
 }
 
+.new-feature{
+    color: red;
+    font-size: .7em;
+    font-weight: bold;
+}
+
 footer a{
     color: #fff;
 }

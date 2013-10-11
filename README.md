@@ -13,12 +13,13 @@ Features
 - Event type options (hover/click)
 - Change tooltip position relative to spot
 - Create spots with your own HTML markup
+- CSS transitions/Animations are supported
 - Very small (just 4kb minified)
 
 Getting Started
 ---------------
 1. Include the jQuery library and the PicTip plugin on your page.
-2. Call the pictip() method on the jQuery element that contains your image(s). 
+2. Call the pictip() method on the jQuery element that contains your image(s).
 Let me show you an example:
 
 ### The HTML
@@ -57,10 +58,10 @@ Let me show you an example:
 ```javascript
 $("#pictip-demo").pictip({
     spots: [
-        { 
-            top: '50px', 
-            left: '20px', 
-            content: 'Hello!', 
+        {
+            top: '50px',
+            left: '20px',
+            content: 'Hello!',
             tooltipPosition:'br' //bottom-right
         }
     ]
@@ -69,15 +70,19 @@ $("#pictip-demo").pictip({
 
 #### The complete set of options:
 
-| Option                                                   | Description                                                                                    |
-| -------------------------------------------------------- |:---------------------------------------------------------------------------------------------- |
-| spots [ Array: [] ]                                      | Spots object array. Refer to the next table for more information.                              |
-| spotClass [ String: '.spot' ]                            | Spots class.                                                                                   |
-| spotTemplate [ String: '<a></a>' ]                       | HTML template to create the spots.                                                             |
-| eventType [ String: 'click' ]                            | Event type to trigger the tooltip/caption display action (posible values are click and hover). |
-| tooltip [ Boolean: true ]                                | Display tooltip or caption? (use caption for a better mobile experience).                      |
-| onShowToolTip [ Function: function (spot, tooltip) {} ]  | Function executed after the tooltip has opened                                                 |
-| onCloseToolTip [ Function: function (spot, tooltip) {} ] | Function executed after the tooltip has closed                                                 |
+| Option                                                   | Description                                                                                         |
+| -------------------------------------------------------- |:--------------------------------------------------------------------------------------------------- |
+| spots [ Array: [] ]                                      | Spots object array. Refer to the next table for more information.                                   |
+| spotClass [ String: '.spot' ]                            | Spots class.                                                                                        |
+| spotTemplate [ String: '<a></a>' ]                       | HTML template to create the spots.                                                                  |
+| eventType [ String: 'click' ]                            | Event type to trigger the tooltip/caption display action (posible values are click and mouseenter). |
+| tooltip [ Boolean: true ]                                | Display tooltip or caption? (use caption for a better mobile experience).                           |
+| show [ Function: function (tooltip) {} ]                 | Function that overrides the plugin default show functionality.                                      |
+| close [ Function: function (tooltip) {} ]                | Function that overrides the plugin default close functionality.                                     |
+| onShowToolTip [ Function: function (spot, tooltip) {} ]  | Function executed after the tooltip has opened                                                      |
+| onCloseToolTip [ Function: function (spot, tooltip) {} ] | Function executed after the tooltip has closed                                                      |
+
+*Functions onShowToolTip and onCloseToolTip are not executed if show and close functions are defined.*
 
 #### Spots set of options:
 
@@ -111,7 +116,7 @@ Yes I know this is easy!
 
 ## Changelog
 
-#### v0.2.1 
+#### v0.2.1
 
 - Initial version
 
@@ -128,6 +133,11 @@ Yes I know this is easy!
 #### v0.2.4
 
 - Adding multiple instance support
+
+#### v0.3.0
+
+- Adding CSS transitions/animations support (through the new show and close configuration options)
+- Adding position class to tooltip elements in order to describe the tooltip position (relative to spot)
 
 ## Contributing
 

@@ -32,3 +32,16 @@
 	z-index: 2;
 	opacity: 1;
 }
+/* Use CSS transitions if they are available */
+.csstransitions .spot-tooltip{
+	-webkit-transition: opacity 0.2s;
+	   -moz-transition: opacity 0.2s;
+	     -o-transition: opacity 0.2s;
+	    -ms-transition: opacity 0.2s;
+	        transition: opacity 0.2s;
+	opacity: 0;
+}
+.csstransitions .is-open{
+	display: block;
+	opacity: 1;
+}

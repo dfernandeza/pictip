@@ -1,5 +1,5 @@
 module("pictip");
- 
+
 test("Elements creation", function() {
 	expect(4);
 	var $pictip1 = $('#pictip1');
@@ -55,7 +55,7 @@ test("User interaction", function() {
 			ok(twoOpenSpots === 1, "onShowToolTip is called (instance #2)");
 		}
 	});
-	
+
 	$pictip1.find('.spot-1').click();
 	ok($pictip1.find('.spot-tooltip-1').is(':visible'), "Opening Tooltip succeeds (instance #1)");
 

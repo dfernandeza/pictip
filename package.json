@@ -1,6 +1,6 @@
 {
   "name": "pictip",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "description": "Add handy tooltips to your images, slideshows, sliders and more",
   "main": "Gruntfile.js",
   "scripts": {

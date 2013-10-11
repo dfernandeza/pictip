@@ -1,10 +1,10 @@
 /*
  * jQuery PicTip Plugin
  * Copyright (c) 2013
- * Version: 0.2.4
+ * Version: 0.3.0
  * Author: Daniel Fernandez Arias @dfernandeza
  *
- * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) 
+ * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
  * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
  */
 
@@ -25,7 +25,7 @@
     /**
      * Creates the spot DOM element
      * @param index     spot identifier
-     * @param $template HTML template (wrapped in a jQuery object) to create the spot, this value is part of the plugin options 
+     * @param $template HTML template (wrapped in a jQuery object) to create the spot, this value is part of the plugin options
      * @return the spot DOM element (wrapped in a jQuery object)
      */
     Spot.prototype.create = function (index, $template) {
@@ -43,41 +43,51 @@
 
     /**
      * Open the spot related tooltip
-     * @param $el    jQuery element where the plugin was instantiated 
+     * @param $el    jQuery element where the plugin was instantiated
+     * @param show   function that overrides the plugin default show functionality
      * @param onShow callback function. Executed after the tooltip is opened
      */
-    Spot.prototype.openToolTip = function ($el, onShow) {
+    Spot.prototype.openToolTip = function ($el, show, onShow) {
         var index = this.index,
             $spot = $el.find('.spot-' + index),
             $tooltip = $el.find('.spot-tooltip-' + index);
         this.open = true;
         $spot.addClass('spot-open');
-        if (this.tooltip.isbubble) {
+        if(this.tooltip.isbubble){
             // set tooltip coords
             $tooltip.css(this.tooltip.getCoords($spot, $tooltip));
         }
-        // TODO: refactor to support different types of animations
-        $tooltip.fadeIn(200, function () {
-            if(typeof onShow === 'function'){
-                onShow($spot[0], this);
-            }
-        });
+        if(typeof show === 'function'){
+            show($tooltip);
+        }else{
+            $tooltip.fadeIn(200, function () {
+                if(typeof onShow === 'function'){
+                    onShow($spot[0], this);
+                }
+            });
+        }
     };
 
     /**
      * Close the spot related tooltip
-     * @param $el    jQuery element where the plugin was instantiated 
+     * @param $el     jQuery element where the plugin was instantiated
+     * @param close   function that overrides the plugin default close functionality
      * @param onClose callback function. Executed after the tooltip is closed
      */
-    Spot.prototype.closeToolTip = function ($el, onClose) {
-        var index = this.index, $spot = $el.find('.spot-' + index);
+    Spot.prototype.closeToolTip = function ($el, close, onClose) {
+        var index = this.index, $spot = $el.find('.spot-' + index),
+            $tooltip = $el.find('.spot-tooltip-' + index);
         this.open = false;
         $spot.removeClass('spot-open');
-        $el.find('.spot-tooltip-' + index).fadeOut(200, function () {
-            if(typeof onClose === 'function'){
-                onClose($spot[0], this);
-            }
-        });
+        if(typeof close === 'function'){
+            close($tooltip);
+        }else{
+            $tooltip.fadeOut(200, function () {
+                if(typeof onClose === 'function'){
+                    onClose($spot[0], this);
+                }
+            });
+        }
     };
 
     /**
@@ -127,8 +137,8 @@
 
     /**
      * Calculates the tooltip position. Relative to the spot position.
-     * @para    spot element (wrapped in a jQuery object) 
-     * @param $tooltip tooltip element (wrapped in a jQuery object) 
+     * @para    spot element (wrapped in a jQuery object)
+     * @param $tooltip tooltip element (wrapped in a jQuery object)
      * @return object containing the top and left position
      */
     ToolTip.prototype.getCoords = function ($spot, $tooltip) {
@@ -146,6 +156,8 @@
             tooltipWidth = $tooltip.outerWidth(),
             // relocate the tooltip to overlap the spot
             relocation = spotWidth / 2;
+
+        $tooltip.addClass('spot-tooltip-' + position);
 
         // top positions
         if (position === 'tl') {
@@ -209,11 +221,11 @@
                 $el.on('click', '.spot-tooltip', function (e) {
                     e.stopPropagation();
                 });
-                // tooltip close event 
+                // tooltip close event
                 $el.on('click', '.spot-tooltip-close', function (e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    spots[$(this).parent('.spot-tooltip').data('index')].closeToolTip($el, opts.onCloseToolTip);
+                    spots[$(this).parent('.spot-tooltip').data('index')].closeToolTip($el, opts.close, opts.onCloseToolTip);
                 });
                 // attach spots event handler
                 $el.on(opts.eventType, opts.spotClass, function (e) {
@@ -225,10 +237,10 @@
                         // TODO: add a configuration option to allow more than one open tooltip at a time
                         self.closeToolTips();
                         // open the tooltip
-                        spots[$this.data('index')].openToolTip($el, opts.onShowToolTip);
+                        spots[$this.data('index')].openToolTip($el, opts.show, opts.onShowToolTip);
                     } else {
                         // close the tooltip
-                        spots[$this.data('index')].closeToolTip($el, opts.onCloseToolTip);
+                        spots[$this.data('index')].closeToolTip($el, opts.close, opts.onCloseToolTip);
                     }
                 });
             };
@@ -239,7 +251,7 @@
         this.closeToolTips = function () {
             for (var i = 0; i < spots.length; i++) {
                 if(spots[i].open){
-                    spots[i].closeToolTip($el, opts.onCloseToolTip);
+                    spots[i].closeToolTip($el, opts.close, opts.onCloseToolTip);
                 }
             }
         };
@@ -297,9 +309,11 @@
         spotClass: '.spot', // spots class
         spotTemplate: '<a href="#"></a>', // HTML markup to create the spots
         eventType: 'click', // type of event that trigger the tooltip/caption display action (click, hover)
-        tooltip: true, // display tooltip/caption? (use caption for a better mobile experience) 
+        tooltip: true, // display tooltip/caption? (use caption for a better mobile experience)
+        show: null, // function that overrides the plugin default show functionality: function(tooltip){}
+        close: null, // function that overrides the plugin default close functionality: function(tooltip){}
         onShowToolTip: null, // function executed after the tooltip is displayed: function(spot, tooltip){}
         onCloseToolTip: null // function executed after the tooltip is closed: function(spot, tooltip){}
     };
-    
+
 })(jQuery);

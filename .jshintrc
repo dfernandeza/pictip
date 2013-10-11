@@ -1,9 +1,10 @@
 {
-  "node": true,	
+  "node": true,
   "browser": true,
   "jquery": true,
 
   "globals": {
+    "Modernizr": true,
     "prettyPrint": true
   },
 

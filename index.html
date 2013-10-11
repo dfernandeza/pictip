@@ -12,10 +12,10 @@
         <link rel="stylesheet" href="css/prettify.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/pictip.css">
-  
+
         <link rel="prefetch prerender" href="https://github.com/dfernandeza/pictip">
         <link rel="prefetch prerender" href="img/sunset.JPG">
-        
+
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
         <script src="js/vendor/prettify.js" ></script>
     </head>
@@ -28,7 +28,7 @@
                 <h1 class="title">jQuery PicTip Plugin</h1>
                 <nav>
                     <ul>
-                        <li><a href="https://github.com/dfernandeza/pictip" target="blank">Download v0.2.4</a></li>
+                        <li><a href="https://github.com/dfernandeza/pictip" target="blank">Download v0.3.0</a></li>
                     </ul>
                 </nav>
             </header>
@@ -52,6 +52,7 @@
                             <li>Event type options (hover/click)</li>
                             <li>Change tooltip position relative to spot</li>
                             <li>Create spots with your own HTML markup</li>
+                            <li>CSS transitions/Animations are supported <span class="new-feature">*new</span></li>
                             <li>Very small in size (just 4KB minified)</li>
                         </ul>
                     </section>
@@ -103,15 +104,15 @@
                                 </tr>
                             </tbody>
                         </table>
-                        
+
                         <h2>The JavaScript</h2>
                         <pre class="prettyprint lang-js prettyprinted">
 $("#pictip-demo").pictip({
     spots: [
-        { 
-            top: '50px', 
-            left: '20px', 
-            content: 'Hello!', 
+        {
+            top: '50px',
+            left: '20px',
+            content: 'Hello!',
             tooltipPosition:'br' //bottom-right
         }
     ]
@@ -135,11 +136,19 @@ $("#pictip-demo").pictip({
                                 </tr>
                                 <tr>
                                   <td class="headings">eventType [ String: 'click' ]</td>
-                                  <td>Event type to trigger the tooltip/caption display action (posible values are click and hover).</td>
+                                  <td>Event type to trigger the tooltip/caption display action (posible values are click and mouseenter).</td>
                                 </tr>
                                 <tr>
                                   <td class="headings">tooltip [ Boolean: true ]</td>
                                   <td>Display tooltip or caption? (use caption for a better mobile experience).</td>
+                                </tr>
+                                <tr>
+                                  <td class="headings">show [ Function: function (tooltip) {} ]</td>
+                                  <td>Function that overrides the plugin default show functionality. <em>onShowToolTip is not executed if show function is defined</em></td>
+                                </tr>
+                                <tr>
+                                  <td class="headings">close [ Function: function (tooltip) {} ]</td>
+                                  <td>Function that overrides the plugin default close functionality. <em>onCloseToolTip is not executed if close function is defined</em></td>
                                 </tr>
                                 <tr>
                                   <td class="headings">onShowToolTip [ Function: function (spot, tooltip) {} ]</td>
@@ -151,7 +160,7 @@ $("#pictip-demo").pictip({
                                 </tr>
                             </tbody>
                         </table>
-                        
+
                         <p>So, spots object array?</p>
                         <table>
                             <caption>The spots set of options:</caption>
@@ -186,7 +195,7 @@ $("#pictip-demo").pictip({
                                 </tr>
                             </tbody>
                         </table>
-                        
+
                         <h2>The API</h2>
                         <p>Accessing the PicTip instance.</p>
                         <pre class="prettyprint lang-js prettyprinted">
@@ -213,7 +222,7 @@ var pictip = $("#pictip-demo").data('pictip');
                         </table>
 
                         <p>Yes I know this is easy!</p>
-                        
+
                         <h2>Browser compatibility</h2>
                         <ul>
                             <li>IE 8+</li>
@@ -249,9 +258,9 @@ var pictip = $("#pictip-demo").data('pictip');
             </footer>
         </div>
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
-        <script src="js/jquery.pictip.min.js" ></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+        <script src="js/jquery.pictip.js" ></script>
         <script src="js/main.js"></script>
 
         <script>

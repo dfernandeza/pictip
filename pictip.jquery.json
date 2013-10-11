@@ -11,7 +11,7 @@
         "gallery",
         "effect"
     ],
-    "version": "0.2.4",
+    "version": "0.3.0",
     "author": {
         "name": "Daniel Fernández A.",
         "url": "https://github.com/dfernandeza/"
@@ -23,7 +23,7 @@
         },
         {
             "type": "GPL",
-            "url": "http://www.opensource.org/licenses/gpl-license.php"  
+            "url": "http://www.opensource.org/licenses/gpl-license.php"
         }
     ],
     "bugs": "https://github.com/dfernandeza/pictip/issues",
