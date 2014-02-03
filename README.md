@@ -18,7 +18,10 @@ Features
 
 Getting Started
 ---------------
-1. Include the jQuery library and the PicTip plugin on your page.
+1. Include the jQuery library and the PicTip plugin on your page. It can also be installed using [Bower](http://bower.io/):
+```
+bower install jquery-pictip
+```
 2. Call the pictip() method on the jQuery element that contains your image(s).
 Let me show you an example:
 
