@@ -1,7 +1,7 @@
 jQuery PicTip
 ======
 
-[jQuery PicTip](http://pictip.greenmandarine.net/) is a plugin that adds handy tooltips to your images, slideshows, sliders and more.
+[jQuery PicTip](http://dfernandeza.github.io/pictip/) is a plugin that adds handy tooltips to your images, slideshows, sliders and more.
 
 Features
 --------
