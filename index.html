@@ -1,30 +1,29 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="description" content="Pictip : jQuery PicTip is a plugin that adds handy tooltips to your images, slideshows, sliders and more.">
-
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
+    <link rel="stylesheet" href="stylesheets/pictip.css">
     <title>Pictip</title>
   </head>
 
   <body>
-
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
           <a id="forkme_banner" href="https://github.com/dfernandeza/pictip">View on GitHub</a>
-
           <h1 id="project_title">Pictip</h1>
           <h2 id="project_tagline">jQuery PicTip is a plugin that adds handy tooltips to your images, slideshows, sliders and more.</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/dfernandeza/pictip/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/dfernandeza/pictip/tarball/master">Download this project as a tar.gz file</a>
-            </section>
+          <section id="downloads">
+            <a class="zip_download_link" href="https://github.com/dfernandeza/pictip/zipball/master">
+              Download this project as a .zip file
+            </a>
+            <a class="tar_download_link" href="https://github.com/dfernandeza/pictip/tarball/master">
+              Download this project as a tar.gz file
+            </a>
+          </section>
         </header>
     </div>
 
@@ -32,270 +31,396 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h1>
-<a name="jquery-pictip" class="anchor" href="#jquery-pictip"><span class="octicon octicon-link"></span></a>jQuery PicTip</h1>
+          <a name="jquery-pictip" class="anchor" href="#jquery-pictip">
+            <span class="octicon octicon-link"></span>
+          </a>
+          jQuery PicTip
+        </h1>
 
-<p>jQuery PicTip is a plugin that adds handy tooltips to your images, slideshows, sliders and more.</p>
+        <p>jQuery PicTip is a plugin that adds handy tooltips to your images, slideshows, sliders and more.</p>
 
-<h2>
-<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+        <div id="pictip-demo">
+          <img src="images/vw-camper.jpg" alt="VW Camper">
+        </div>
 
-<ul>
-<li>Easy configuration and customization</li>
-<li>Easy integration with slideshows, sliders, 360 views, and more</li>
-<li>Support for captions and bubble tooltips</li>
-<li>Add any content type to tooltips/captions</li>
-<li>Event type options (hover/click)</li>
-<li>Change tooltip position relative to spot</li>
-<li>Create spots with your own HTML markup</li>
-<li>CSS transitions/Animations are supported</li>
-<li>Very small (just 4kb minified)</li>
-</ul><h2>
-<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting Started</h2>
+        <h2>
+          <a name="features" class="anchor" href="#features">
+            <span class="octicon octicon-link"></span>
+          </a>
+          Features
+        </h2>
 
-<ul>
-<li>Include the jQuery library and the PicTip plugin on your page. It can also be installed using <a href="http://bower.io/">Bower</a>:</li>
-</ul><pre><code>bower install jquery-pictip
-</code></pre>
+        <ul>
+          <li>Easy configuration and customization</li>
+          <li>Easy integration with slideshows, sliders, 360 views, and more</li>
+          <li>Support for captions and bubble tooltips</li>
+          <li>Add any content type to tooltips/captions</li>
+          <li>Event type options (hover/click)</li>
+          <li>Change tooltip position relative to spot</li>
+          <li>Create spots with your own HTML markup</li>
+          <li>CSS transitions/Animations are supported</li>
+          <li>Very small (just 4kb minified)</li>
+        </ul>
 
-<ul>
-<li>Call the pictip() method on the jQuery element that contains your image(s).
-Let me show you an example:</li>
-</ul><h3>
-<a name="the-html" class="anchor" href="#the-html"><span class="octicon octicon-link"></span></a>The HTML</h3>
+        <h2>
+          <a name="getting-started" class="anchor" href="#getting-started">
+            <span class="octicon octicon-link"></span>
+          </a>
+          Getting Started
+        </h2>
 
-<div class="highlight highlight-html"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"pictip-demo"</span><span class="nt">&gt;</span> <span class="nt">&lt;/div&gt;</span>
-</pre></div>
+        <ul>
+          <li>
+            Include the jQuery library and the PicTip plugin on your page. It can also be installed using 
+            <a href="http://bower.io/">Bower</a>:
+          </li>
+        </ul>
 
-<h3>
-<a name="the-css" class="anchor" href="#the-css"><span class="octicon octicon-link"></span></a>The CSS</h3>
+        <pre>
+          <code>bower install jquery-pictip</code>
+        </pre>
 
-<div class="highlight highlight-css"><pre><span class="nf">#pictip-demo</span><span class="p">{</span>
-    <span class="k">position</span><span class="o">:</span> <span class="k">relative</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nc">.spot</span><span class="p">{</span>
-  <span class="c">/* make it look pretty */</span>
-<span class="p">}</span>
-<span class="nc">.spot-tooltip</span><span class="p">{</span>
-  <span class="c">/* make it look pretty */</span>
-<span class="p">}</span>
-</pre></div>
+        <ul>
+        <li>Call the pictip() method on the jQuery element that contains your image(s).
+        Let me show you an example:</li>
+        </ul>
 
-<h4>
-<a name="use-the-following-clases-for-customization" class="anchor" href="#use-the-following-clases-for-customization"><span class="octicon octicon-link"></span></a>Use the following clases for customization:</h4>
+        <h3>
+          <a name="the-html" class="anchor" href="#the-html">
+            <span class="octicon octicon-link"></span>
+          </a>
+          The HTML
+        </h3>
 
-<table>
-<thead><tr>
-<th>Class</th>
-<th align="left">Description</th>
-</tr></thead>
-<tbody>
-<tr>
-<td>spot</td>
-<td align="left">Spot class</td>
-</tr>
-<tr>
-<td>spot-{index}</td>
-<td align="left">Class containing the spot indetifier (spot-0, spot-1, etc)</td>
-</tr>
-<tr>
-<td>spot-open</td>
-<td align="left">Class assigned to the spot when the related tooltip is open</td>
-</tr>
-<tr>
-<td>spot-tooltip</td>
-<td align="left">Tooltip class</td>
-</tr>
-<tr>
-<td>spot-tooltip-{index}</td>
-<td align="left">Class containing the tooltip indetifier (spot-tooltip-0, spot-tooltip-1, etc)</td>
-</tr>
-<tr>
-<td>spot-tooltip-close</td>
-<td align="left">Class assigned to the tooltip close link</td>
-</tr>
-<tr>
-<td>spot-tooltip-content</td>
-<td align="left">Class assigned to the tooltip content container</td>
-</tr>
-</tbody>
-</table><h3>
-<a name="the-javascript" class="anchor" href="#the-javascript"><span class="octicon octicon-link"></span></a>The JavaScript</h3>
+        <div class="highlight highlight-html">
+          <pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"pictip-demo"</span><span class="nt">&gt;</span> <span class="nt">&lt;/div&gt;</span>
+          </pre>
+        </div>
 
-<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="s2">"#pictip-demo"</span><span class="p">).</span><span class="nx">pictip</span><span class="p">({</span>
-    <span class="nx">spots</span><span class="o">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="nx">top</span><span class="o">:</span> <span class="s1">'50px'</span><span class="p">,</span>
-            <span class="nx">left</span><span class="o">:</span> <span class="s1">'20px'</span><span class="p">,</span>
-            <span class="nx">content</span><span class="o">:</span> <span class="s1">'Hello!'</span><span class="p">,</span>
-            <span class="nx">tooltipPosition</span><span class="o">:</span><span class="s1">'br'</span> <span class="c1">//bottom-right</span>
+        <h3>
+          <a name="the-css" class="anchor" href="#the-css">
+            <span class="octicon octicon-link"></span>
+          </a>
+          The CSS
+        </h3>
+
+        <div class="highlight highlight-css">
+        <pre>
+        <span class="nf">#pictip-demo</span><span class="p">{</span>
+          <span class="k">position</span><span class="o">:</span> <span class="k">relative</span><span class="p">;</span>
         <span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">});</span>
-</pre></div>
+        <span class="nc">.spot</span><span class="p">{</span>
+          <span class="c">/* make it look pretty */</span>
+        <span class="p">}</span>
+        <span class="nc">.spot-tooltip</span><span class="p">{</span>
+          <span class="c">/* make it look pretty */</span>
+        <span class="p">}</span>
+        </pre>
+        </div>
 
-<h4>
-<a name="the-complete-set-of-options" class="anchor" href="#the-complete-set-of-options"><span class="octicon octicon-link"></span></a>The complete set of options:</h4>
+        <h4>
+          <a name="use-the-following-clases-for-customization" class="anchor" href="#use-the-following-clases-for-customization">
+            <span class="octicon octicon-link"></span>
+          </a>
+          Use the following clases for customization:
+        </h4>
 
-<table>
-<thead><tr>
-<th>Option</th>
-<th align="left">Description</th>
-</tr></thead>
-<tbody>
-<tr>
-<td>spots [ Array: [] ]</td>
-<td align="left">Spots object array. Refer to the next table for more information.</td>
-</tr>
-<tr>
-<td>spotClass [ String: '.spot' ]</td>
-<td align="left">Spots class.</td>
-</tr>
-<tr>
-<td>spotTemplate [ String: '' ]</td>
-<td align="left">HTML template to create the spots.</td>
-</tr>
-<tr>
-<td>eventType [ String: 'click' ]</td>
-<td align="left">Event type to trigger the tooltip/caption display action (posible values are click and mouseenter).</td>
-</tr>
-<tr>
-<td>tooltip [ Boolean: true ]</td>
-<td align="left">Display tooltip or caption? (use caption for a better mobile experience).</td>
-</tr>
-<tr>
-<td>show [ Function: function (tooltip) {} ]</td>
-<td align="left">Function that overrides the plugin default show functionality.</td>
-</tr>
-<tr>
-<td>close [ Function: function (tooltip) {} ]</td>
-<td align="left">Function that overrides the plugin default close functionality.</td>
-</tr>
-<tr>
-<td>onShowToolTip [ Function: function (spot, tooltip) {} ]</td>
-<td align="left">Function executed after the tooltip has opened</td>
-</tr>
-<tr>
-<td>onCloseToolTip [ Function: function (spot, tooltip) {} ]</td>
-<td align="left">Function executed after the tooltip has closed</td>
-</tr>
-</tbody>
-</table><p><em>Functions onShowToolTip and onCloseToolTip are not executed if show and close functions are defined.</em></p>
+        <table>
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th align="left">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>spot</td>
+              <td align="left">Spot class</td>
+            </tr>
+            <tr>
+              <td>spot-{index}</td>
+              <td align="left">Class containing the spot indetifier (spot-0, spot-1, etc)</td>
+            </tr>
+            <tr>
+              <td>spot-open</td>
+              <td align="left">Class assigned to the spot when the related tooltip is open</td>
+            </tr>
+            <tr>
+              <td>spot-tooltip</td>
+              <td align="left">Tooltip class</td>
+            </tr>
+            <tr>
+              <td>spot-tooltip-{index}</td>
+              <td align="left">Class containing the tooltip indetifier (spot-tooltip-0, spot-tooltip-1, etc)</td>
+            </tr>
+            <tr>
+              <td>spot-tooltip-close</td>
+              <td align="left">Class assigned to the tooltip close link</td>
+            </tr>
+            <tr>
+              <td>spot-tooltip-content</td>
+              <td align="left">Class assigned to the tooltip content container</td>
+            </tr>
+          </tbody>
+        </table>
 
-<h4>
-<a name="spots-set-of-options" class="anchor" href="#spots-set-of-options"><span class="octicon octicon-link"></span></a>Spots set of options:</h4>
+        <h3>
+          <a name="the-javascript" class="anchor" href="#the-javascript">
+            <span class="octicon octicon-link"></span>
+          </a>
+          The JavaScript
+        </h3>
 
-<table>
-<thead><tr>
-<th>Option</th>
-<th align="left">Description</th>
-</tr></thead>
-<tbody>
-<tr>
-<td>top [ Number: 0 ]</td>
-<td align="left">Spot top position</td>
-</tr>
-<tr>
-<td>left [ Number: 0 ]</td>
-<td align="left">Spot left position</td>
-</tr>
-<tr>
-<td>content [ String: '' ]</td>
-<td align="left">Tooltip content. Add any content type</td>
-</tr>
-<tr>
-<td>tooltipPosition [ String: '' ]</td>
-<td align="left">Tooltip position relative to spot. (tl, tr, tc, bl, br, bc, cl, cr)</td>
-</tr>
-<tr>
-<td>tooltipId [ String: '' ]</td>
-<td align="left">Tooltip ID</td>
-</tr>
-<tr>
-<td>tooltipCss [ Object: {} ]</td>
-<td align="left">CSS styling for the tooltip</td>
-</tr>
-<tr>
-<td>tooltipClose [ Boolean: false ]</td>
-<td align="left">Set this to true if you want the tooltip close link</td>
-</tr>
-</tbody>
-</table><h3>
-<a name="the-api" class="anchor" href="#the-api"><span class="octicon octicon-link"></span></a>The API</h3>
+        <div class="highlight highlight-javascript">
+        <pre>
+          <span class="nx">$</span><span class="p">(</span><span class="s2">"#pictip-demo"</span><span class="p">).</span><span class="nx">pictip</span><span class="p">({</span>
+            <span class="nx">spots</span><span class="o">:</span> <span class="p">[</span><span class="p">{</span>
+              <span class="nx">top</span><span class="o">:</span> <span class="s1">'50px'</span><span class="p">,</span>
+              <span class="nx">left</span><span class="o">:</span> <span class="s1">'20px'</span><span class="p">,</span>
+              <span class="nx">content</span><span class="o">:</span> <span class="s1">'Hello!'</span><span class="p">,</span>
+              <span class="nx">tooltipPosition</span><span class="o">:</span><span class="s1">'br'</span> <span class="c1">//bottom-right</span>
+            <span class="p">}</span><span class="p">]</span>
+          <span class="p">});</span>
+        </pre>
+        </div>
 
-<p>Accessing the PicTip instance.</p>
+        <h4>
+          <a name="the-complete-set-of-options" class="anchor" href="#the-complete-set-of-options">
+            <span class="octicon octicon-link"></span>
+          </a>
+          The complete set of options:
+        </h4>
 
-<div class="highlight highlight-javascript"><pre><span class="c1">// You can access the instance with:</span>
-<span class="kd">var</span> <span class="nx">pictip</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">"#pictip-demo"</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'pictip'</span><span class="p">);</span>
-</pre></div>
+        <table>
+          <thead>
+            <tr>
+              <th>Option</th>
+              <th align="left">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>spots [ Array: [] ]</td>
+              <td align="left">Spots object array. Refer to the next table for more information.</td>
+            </tr>
+            <tr>
+              <td>spotClass [ String: '.spot' ]</td>
+              <td align="left">Spots class.</td>
+            </tr>
+            <tr>
+              <td>spotTemplate [ String: '' ]</td>
+              <td align="left">HTML template to create the spots.</td>
+            </tr>
+            <tr>
+              <td>eventType [ String: 'click' ]</td>
+              <td align="left">Event type to trigger the tooltip/caption display action (posible values are click and mouseenter).</td>
+            </tr>
+            <tr>
+              <td>tooltip [ Boolean: true ]</td>
+              <td align="left">Display tooltip or caption? (use caption for a better mobile experience).</td>
+            </tr>
+            <tr>
+              <td>show [ Function: function (tooltip) {} ]</td>
+              <td align="left">Function that overrides the plugin default show functionality.</td>
+            </tr>
+            <tr>
+              <td>close [ Function: function (tooltip) {} ]</td>
+              <td align="left">Function that overrides the plugin default close functionality.</td>
+            </tr>
+            <tr>
+              <td>onShowToolTip [ Function: function (spot, tooltip) {} ]</td>
+              <td align="left">Function executed after the tooltip has opened</td>
+            </tr>
+            <tr>
+              <td>onCloseToolTip [ Function: function (spot, tooltip) {} ]</td>
+              <td align="left">Function executed after the tooltip has closed</td>
+            </tr>
+          </tbody>
+        </table>
 
-<h4>
-<a name="you-can-access-the-following-methods-of-the-instance" class="anchor" href="#you-can-access-the-following-methods-of-the-instance"><span class="octicon octicon-link"></span></a>You can access the following methods of the instance:</h4>
+        <p><em>Functions onShowToolTip and onCloseToolTip are not executed if show and close functions are defined.</em></p>
 
-<table>
-<thead><tr>
-<th>Method</th>
-<th align="left">Description</th>
-</tr></thead>
-<tbody>
-<tr>
-<td>init [ Function: function (options) {...} ]</td>
-<td align="left">Initialize the plugin instance</td>
-</tr>
-<tr>
-<td>closeToolTips [ Function: function () {...} ]</td>
-<td align="left">Close all open tooltips</td>
-</tr>
-<tr>
-<td>destroy [ Function: function () {...} ]</td>
-<td align="left">Destroy the plugin instance</td>
-</tr>
-</tbody>
-</table><p>Yes I know this is easy!</p>
+        <h4>
+          <a name="spots-set-of-options" class="anchor" href="#spots-set-of-options">
+            <span class="octicon octicon-link"></span>
+          </a>
+          Spots set of options:
+        </h4>
 
-<h2>
-<a name="changelog" class="anchor" href="#changelog"><span class="octicon octicon-link"></span></a>Changelog</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Option</th>
+              <th align="left">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>top [ Number: 0 ]</td>
+              <td align="left">Spot top position</td>
+            </tr>
+            <tr>
+              <td>left [ Number: 0 ]</td>
+              <td align="left">Spot left position</td>
+            </tr>
+            <tr>
+              <td>content [ String: '' ]</td>
+              <td align="left">Tooltip content. Add any content type</td>
+            </tr>
+            <tr>
+              <td>tooltipPosition [ String: '' ]</td>
+              <td align="left">Tooltip position relative to spot. (tl, tr, tc, bl, br, bc, cl, cr)</td>
+            </tr>
+            <tr>
+              <td>tooltipId [ String: '' ]</td>
+              <td align="left">Tooltip ID</td>
+            </tr>
+            <tr>
+              <td>tooltipCss [ Object: {} ]</td>
+              <td align="left">CSS styling for the tooltip</td>
+            </tr>
+            <tr>
+              <td>tooltipClose [ Boolean: false ]</td>
+              <td align="left">Set this to true if you want the tooltip close link</td>
+            </tr>
+          </tbody>
+        </table>
 
-<h4>
-<a name="v021" class="anchor" href="#v021"><span class="octicon octicon-link"></span></a>v0.2.1</h4>
+        <h3>
+          <a name="the-api" class="anchor" href="#the-api">
+            <span class="octicon octicon-link"></span>
+          </a>
+          The API
+        </h3>
 
-<ul>
-<li>Initial version</li>
-</ul><h4>
-<a name="v022" class="anchor" href="#v022"><span class="octicon octicon-link"></span></a>v0.2.2</h4>
+        <p>Accessing the PicTip instance.</p>
 
-<ul>
-<li>Adding minor performance improvements (jQuery selectors)</li>
-<li>Fixed caption functionality (tooltip: false)</li>
-</ul><h4>
-<a name="v023" class="anchor" href="#v023"><span class="octicon octicon-link"></span></a>v0.2.3</h4>
+        <div class="highlight highlight-javascript">
+        <pre>
+        <span class="c1">// You can access the instance with:</span>
+        <span class="kd">var</span> <span class="nx">pictip</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">"#pictip-demo"</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'pictip'</span><span class="p">);</span>
+        </pre>
+        </div>
 
-<ul>
-<li>Adding minor performance improvements to 'open' and 'close' tooltip functionality</li>
-<li>Fixed 'onCloseToolTip' callback executing on first user interaction</li>
-</ul><h4>
-<a name="v024" class="anchor" href="#v024"><span class="octicon octicon-link"></span></a>v0.2.4</h4>
+        <h4>
+          <a name="you-can-access-the-following-methods-of-the-instance" class="anchor" href="#you-can-access-the-following-methods-of-the-instance">
+            <span class="octicon octicon-link"></span>
+          </a>
+          You can access the following methods of the instance:
+        </h4>
 
-<ul>
-<li>Adding multiple instance support</li>
-</ul><h4>
-<a name="v030" class="anchor" href="#v030"><span class="octicon octicon-link"></span></a>v0.3.0</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th align="left">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>init [ Function: function (options) {...} ]</td>
+              <td align="left">Initialize the plugin instance</td>
+            </tr>
+            <tr>
+              <td>closeToolTips [ Function: function () {...} ]</td>
+              <td align="left">Close all open tooltips</td>
+            </tr>
+            <tr>
+              <td>destroy [ Function: function () {...} ]</td>
+              <td align="left">Destroy the plugin instance</td>
+            </tr>
+          </tbody>
+        </table>
 
-<ul>
-<li>Adding CSS transitions/animations support (through the new show and close configuration options)</li>
-<li>Adding position class to tooltip elements in order to describe the tooltip position (relative to spot)</li>
-</ul><h2>
-<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
+        <h2>
+          <a name="changelog" class="anchor" href="#changelog">
+            <span class="octicon octicon-link"></span>
+          </a>
+          Changelog
+        </h2>
 
-<p>If you'd like to contribute to this project, create a branch and send a pull request for that branch.
-Hint and test your code.</p>
+        <h4>
+          <a name="v021" class="anchor" href="#v021">
+            <span class="octicon octicon-link"></span>
+          </a>
+          v0.2.1
+        </h4>
 
-<p>Any problems, please, let me know.</p>
+        <ul>
+          <li>Initial version</li>
+        </ul>
 
-<h2>
-<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+        <h4>
+          <a name="v022" class="anchor" href="#v022">
+            <span class="octicon octicon-link"></span>
+          </a>
+          v0.2.2
+        </h4>
 
-<p>Copyright (c) 2013 Daniel Fernández A.
-Dual licensed under the MIT and GPL licenses.</p>
+        <ul>
+          <li>Adding minor performance improvements (jQuery selectors)</li>
+          <li>Fixed caption functionality (tooltip: false)</li>
+        </ul>
+
+        <h4>
+          <a name="v023" class="anchor" href="#v023">
+            <span class="octicon octicon-link"></span>
+          </a>
+          v0.2.3
+        </h4>
+
+        <ul>
+          <li>Adding minor performance improvements to 'open' and 'close' tooltip functionality</li>
+          <li>Fixed 'onCloseToolTip' callback executing on first user interaction</li>
+        </ul>
+
+        <h4>
+          <a name="v024" class="anchor" href="#v024">
+            <span class="octicon octicon-link"></span>
+          </a>
+          v0.2.4
+        </h4>
+
+        <ul>
+          <li>Adding multiple instance support</li>
+        </ul>
+
+        <h4>
+          <a name="v030" class="anchor" href="#v030">
+            <span class="octicon octicon-link"></span>
+          </a>
+          v0.3.0
+        </h4>
+
+        <ul>
+          <li>Adding CSS transitions/animations support (through the new show and close configuration options)</li>
+          <li>Adding position class to tooltip elements in order to describe the tooltip position (relative to spot)</li>
+        </ul>
+
+        <h2>
+          <a name="contributing" class="anchor" href="#contributing">
+            <span class="octicon octicon-link"></span>
+          </a>Contributing
+        </h2>
+
+        <p>
+          If you'd like to contribute to this project, create a branch and send a pull request for that branch.
+          Hint and test your code.
+        </p>
+
+        <p>Any problems, please, let me know.</p>
+
+        <h2>
+          <a name="license" class="anchor" href="#license">
+            <span class="octicon octicon-link"></span>
+          </a>
+          License
+        </h2>
+
+        <p>
+          Copyright (c) 2013 Daniel Fernández A.
+          Dual licensed under the MIT and GPL licenses.
+        </p>
       </section>
     </div>
 
@@ -307,17 +432,21 @@ Dual licensed under the MIT and GPL licenses.</p>
       </footer>
     </div>
 
-              <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("UA-37854450-4");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
 
+    <script type="text/javascript">
+      try {
+        var pageTracker = _gat._getTracker("UA-37854450-4");
+        pageTracker._trackPageview();
+      } catch(err) {}
+    </script>
+  
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="javascripts/jquery.pictip.min.js"></script>
+    <script src="javascripts/main.js"></script>
 
   </body>
 </html>

@@ -1,0 +1,44 @@
+#pictip-demo{
+	position: relative;
+}
+
+.spot{
+	width: 20px;
+	height: 20px;
+	display: block;
+    border-radius: 50%;
+    background-clip: padding-box;
+	background: #212121;
+	z-index: 1;
+	opacity: .75;
+}
+
+.spot-tooltip{
+	font-size: .75em;
+	color: #222;
+	background: #fff;
+	background: rgba(255, 255, 255, 0.75);
+	padding: 5px;
+	position: absolute;
+    border-radius: 5px;
+    background-clip: padding-box;
+    display: none;
+    box-sizing: border-box;
+}
+
+.spot-open{
+	background-color: #0090ff;
+	z-index: 2;
+	opacity: 1;
+}
+
+/* Use CSS transitions if they are available */
+.csstransitions .spot-tooltip{
+	transition: opacity 0.2s;
+	opacity: 0;
+}
+
+.csstransitions .is-open{
+	display: block;
+	opacity: 1;
+}
