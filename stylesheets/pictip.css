@@ -59,8 +59,8 @@
 }
 
 .csstransitions .is-open{
-	display:block;
-	opacity:1;
+	display: block;
+	opacity: 1;
 }
 
 @-webkit-keyframes spoty{
