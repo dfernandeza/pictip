@@ -2,14 +2,7 @@
   "node": true,
   "browser": true,
   "jquery": true,
-
-  "globals": {
-    "Modernizr": true,
-    "prettyPrint": true
-  },
-
   "esnext": true,
-
   "bitwise": true,
   "camelcase": true,
   "curly": true,

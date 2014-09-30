@@ -9,9 +9,10 @@
         "ui",
         "tooltip",
         "gallery",
-        "effect"
+        "effect",
+        "annotations"
     ],
-    "version": "0.3.0",
+    "version": "1.0.0",
     "author": {
         "name": "Daniel Fernández A.",
         "url": "https://github.com/dfernandeza/"
@@ -27,7 +28,7 @@
         }
     ],
     "bugs": "https://github.com/dfernandeza/pictip/issues",
-    "homepage": "https://github.com/dfernandeza/pictip",
+    "homepage": "http://dfernandeza.github.io/pictip/",
     "docs": "https://github.com/dfernandeza/pictip",
     "dependencies": {
         "jquery": ">=1.8.3"

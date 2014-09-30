@@ -1,7 +1,7 @@
 /*
  * jQuery PicTip Plugin
- * Copyright (c) 2013
- * Version: 0.3.0
+ * Copyright (c) 2012-2014
+ * Version: 1.0.0
  * Author: Daniel Fernandez Arias @dfernandeza
  *
  * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
@@ -10,7 +10,7 @@
 
 (function ($) {
     /**
-     * Creates a Spot instance
+     * Spot Object
      * @param index spot identifier
      * @param conf literal object containing the Spot configuration
      */
@@ -20,17 +20,16 @@
         this.left = conf.left;
         this.tooltip = null;
         this.open = false;
-	};
+    };
 
     /**
-     * Creates the spot DOM element
+     * Creates the spot element
      * @param index     spot identifier
      * @param $template HTML template (wrapped in a jQuery object) to create the spot, this value is part of the plugin options
      * @return the spot DOM element (wrapped in a jQuery object)
      */
     Spot.prototype.create = function (index, $template) {
-        var $spot = $template.clone();
-        $spot.css({
+        return $template.clone().css({
             position: 'absolute',
             top: this.top,
             left: this.left,
@@ -38,7 +37,6 @@
         }).addClass('spot-' + index).data({
             'index': index
         });
-        return $spot;
     };
 
     /**
@@ -75,7 +73,8 @@
      * @param onClose callback function. Executed after the tooltip is closed
      */
     Spot.prototype.closeToolTip = function ($el, close, onClose) {
-        var index = this.index, $spot = $el.find('.spot-' + index),
+        var index = this.index,
+            $spot = $el.find('.spot-' + index),
             $tooltip = $el.find('.spot-tooltip-' + index);
         this.open = false;
         $spot.removeClass('spot-open');
@@ -91,7 +90,7 @@
     };
 
     /**
-     * Creates a ToolTip instance
+     * ToolTip object
      * @param index tooltip identifier
      * @param conf literal object containing the tooltip configuration
      * @param isbubble tooltipe type (caption/bubble)
@@ -101,7 +100,7 @@
         this.position = conf.tooltipPosition; // tooltip position (tl, tr, tc, bl, br, bc, cl, cr)
         this.id = conf.tooltipId;
         this.css = conf.tooltipCss;
-        this.close = conf.tooltipClose; // add the close link?
+        this.close = conf.tooltipClose; // add the close button?
         this.content = conf.content;
         this.isbubble = isbubble;
     };
@@ -130,7 +129,7 @@
         if (!this.isbubble) {
             pluginCss = {top: 0, left: 0, width: '100%'}; // use captions instead of bubble tooltips
         }
-        customCss = $.extend(pluginCss, this.css); // user adds custom css
+        customCss = $.extend(pluginCss, this.css); // user could add custom css
         $tt.css(customCss);
         return $tt;
     };
@@ -142,7 +141,7 @@
      * @return object containing the top and left position
      */
     ToolTip.prototype.getCoords = function ($spot, $tooltip) {
-        var top = 0, left = 0,
+        var top, left,
             position = this.position,
             // Spot positioning
             spotPosition = $spot.position(),
@@ -160,39 +159,29 @@
         $tooltip.addClass('spot-tooltip-' + position);
 
         // top positions
-        if (position === 'tl') {
+        if (position.charAt(0) === 't') {
             top = spotTop - tooltipHeight + relocation;
-            left = spotLeft - tooltipWidth + relocation;
-        }
-        if (position === 'tr') {
-            top = spotTop - tooltipHeight + relocation;
-            left = spotLeft + spotWidth - relocation;
-        }
-        if (position === 'tc') {
-            top = spotTop - tooltipHeight + relocation;
-            left = spotLeft - (tooltipWidth / 2 - spotWidth / 2);
         }
         // bottom positions
-        if (position === 'bl') {
+        if (position.charAt(0) === 'b') {
             top = spotTop +  spotHeight - relocation;
-            left = spotLeft - tooltipWidth + relocation;
-        }
-        if (position === 'br') {
-            top = spotTop +  spotHeight - relocation;
-            left = spotLeft + spotWidth - relocation;
-        }
-        if (position === 'bc') {
-            top = spotTop +  spotHeight - relocation;
-            left = spotLeft - (tooltipWidth / 2 - spotWidth / 2);
         }
         // center positions
-        if (position === 'cl') {
+        if (position.charAt(0) === 'c') {
             top = spotTop -  (tooltipHeight / 2 - spotHeight / 2);
+        }
+
+        // left positions
+        if (position === 'tl' || position === 'bl' || position === 'cl') {
             left = spotLeft - tooltipWidth + relocation;
         }
-        if (position === 'cr') {
-            top = spotTop -  (tooltipHeight / 2 - spotHeight / 2);
+        // right positions
+        if (position === 'tr' || position === 'br' || position === 'cr') {
             left = spotLeft + spotWidth - relocation;
+        }
+        // center positions
+        if (position === 'tc' || position === 'bc') {
+            left = spotLeft - (tooltipWidth / 2 - spotWidth / 2);
         }
 
         return {
@@ -297,7 +286,7 @@
     };
 
     // Extending the jQuery library
-	$.fn.pictip = function (options) {
+    $.fn.pictip = function (options) {
         return this.each(function () {
             new PicTip(this).init(options);
         });

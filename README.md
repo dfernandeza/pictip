@@ -14,6 +14,8 @@ Features
 - Change tooltip position relative to spot
 - Create spots with your own HTML markup
 - CSS transitions/Animations are supported
+- Built with performance in mind
+- Responsive-friendly
 - Very small (just 4kb minified)
 
 Getting Started
@@ -115,32 +117,17 @@ var pictip = $("#pictip-demo").data('pictip');
 | closeToolTips [ Function: function () {...} ] | Close all open tooltips        |
 | destroy [ Function: function () {...} ]       | Destroy the plugin instance    |
 
-Yes I know this is easy!
 
 ## Changelog
-
-#### v0.2.1
-
-- Initial version
-
-#### v0.2.2
-
-- Adding minor performance improvements (jQuery selectors)
-- Fixed caption functionality (tooltip: false)
-
-#### v0.2.3
-
-- Adding minor performance improvements to 'open' and 'close' tooltip functionality
-- Fixed 'onCloseToolTip' callback executing on first user interaction
-
-#### v0.2.4
-
-- Adding multiple instance support
 
 #### v0.3.0
 
 - Adding CSS transitions/animations support (through the new show and close configuration options)
 - Adding position class to tooltip elements in order to describe the tooltip position (relative to spot)
+
+#### v1.0.0
+
+- Adding performance improvements for responsive sites
 
 ## Contributing
 

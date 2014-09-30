@@ -1,6 +1,6 @@
 {
   "name": "pictip",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "Add handy tooltips to your images, slideshows, sliders and more",
   "main": "Gruntfile.js",
   "scripts": {
@@ -14,7 +14,8 @@
     "tooltip",
     "slider",
     "images",
-    "jquery-plugin"
+    "jquery-plugin",
+    "annotations"
   ],
   "author": "Daniel Fernandez",
   "license": "MIT and GPL",
@@ -25,8 +26,9 @@
   },
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-connect": "^0.8.0",
+    "grunt-contrib-jshint": "~0.6.2",
     "grunt-contrib-qunit": "~0.2.2",
-    "grunt-contrib-jshint": "~0.6.2"
+    "grunt-contrib-uglify": "~0.2.2"
   }
 }
