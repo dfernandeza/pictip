@@ -1,0 +1,161 @@
+.header-container {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	z-index: 1;
+}
+
+.title {
+	font-size: 2em;
+	color: #fff;
+	padding: 10px;
+	background: rgba(0, 0, 0, 0.60);
+}
+
+.img-center {
+	text-align: center;
+}
+
+#pictip-demo{
+	background: url('../img/vintage-bike-lg.jpg') no-repeat center center; 
+	-webkit-background-size: auto;
+		    background-size: auto; 
+	width: 100%;
+	height: 730px;
+	margin: auto;
+	position: relative;
+}
+
+.spot{
+	width: 20px;
+	height: 20px;
+	display: block;
+	border-radius: 50%;
+	background-clip: padding-box;
+	background: #FFF;
+	z-index: 1;
+	opacity: .95;
+}
+
+/* Pulse animation */
+.spot:after {
+	content: '';
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	border-radius: inherit;
+	background: transparent;
+	-webkit-animation: pulse 2s infinite;
+	        animation: pulse 2s infinite;
+}
+
+.spot-tooltip{
+	font-size: .75em;
+	color: #222;
+	background: #fff;
+	background: rgba(255, 255, 255, .95);
+	padding: 5px;
+	position: absolute;
+	border-radius: 0.25em;
+	background-clip: padding-box;
+	display: none;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+	-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+	        box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+	max-width: 220px;
+	z-index: 2;
+	/* Use CSS transitions if they are available */
+	-webkit-transition: opacity 0.4s;
+		    transition: opacity 0.4s;
+	opacity: 0;
+}
+
+.spot-open{
+	background: #34495e;
+	z-index: 3;
+	opacity: 1;
+}
+
+.spot-open:after {
+	-webkit-animation: none;
+	        animation: none;
+}
+
+.is-open{
+	display: block;
+	opacity: 1;
+}
+
+.footer-container {
+	font-size: .7em;
+	padding: 10px;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+	-webkit-transform: scale(1);
+	-webkit-box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.8);
+	        box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.8);
+  }
+
+  50% {
+  	-webkit-box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.8);
+	        box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.8);
+  }
+
+  100% {
+	-webkit-transform: scale(1.8);
+	-webkit-box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0);
+	        box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+	-ms-transform: scale(1);
+	    transform: scale(1);
+	box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.8);
+  }
+
+  50% {
+	box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.8);
+  }
+
+  100% {
+	-ms-transform: scale(1.8);
+	    transform: scale(1.8);
+	box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0);
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+	#pictip-demo{
+		background: url('../img/vintage-bike-md.jpg') no-repeat center center;
+		height: 470px;
+	}
+}
+
+@media only screen and (max-width: 680px) {
+	.title {
+		font-size: 1.5em;
+	}
+	#pictip-demo{
+		background: url('../img/vintage-bike-sm.jpg') no-repeat center center;
+		height: 376px;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.title {
+		font-size: 1em;
+	}
+	#pictip-demo{
+		background: url('../img/vintage-bike-xsm.jpg') no-repeat center center;
+		height: 250px;
+	}
+}
