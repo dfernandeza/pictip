@@ -100,7 +100,7 @@ $("#pictip-demo").pictip({
 | tooltipId [ String: '' ]        | Tooltip ID                                                          |
 | tooltipCss [ Object: {} ]       | CSS styling for the tooltip                                         |
 | tooltipClose [ Boolean: false ] | Set this to true if you want the tooltip close link                 |
-| Open [ Boolean: false ]         | Set this to true if you want the tooltip to be open on page load    |
+| open [ Boolean: false ]         | Set this to true if you want the tooltip to be open on page load    |
 
 ### The API
 Accessing the PicTip instance.
