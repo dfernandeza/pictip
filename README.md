@@ -100,6 +100,7 @@ $("#pictip-demo").pictip({
 | tooltipId [ String: '' ]        | Tooltip ID                                                          |
 | tooltipCss [ Object: {} ]       | CSS styling for the tooltip                                         |
 | tooltipClose [ Boolean: false ] | Set this to true if you want the tooltip close link                 |
+| Open [ Boolean: false ]         | Set this to true if you want the tooltip to be open on page load    |
 
 ### The API
 Accessing the PicTip instance.
@@ -129,6 +130,10 @@ var pictip = $("#pictip-demo").data('pictip');
 
 - Adding performance improvements for responsive sites
 
+#### v1.1.0
+
+- Adding "open by default" option 
+
 ## Contributing
 
 If you'd like to contribute to this project, create a branch and send a pull request for that branch.
@@ -137,5 +142,5 @@ Hint and test your code.
 Any problems, please, let me know.
 
 ## License
-Copyright (c) 2013 Daniel Fernández A.
+Copyright (c) 2015 Daniel Fernández A.
 Dual licensed under the MIT and GPL licenses.
