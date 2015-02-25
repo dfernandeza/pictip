@@ -1,7 +1,7 @@
 /*
  * jQuery PicTip Plugin
- * Copyright (c) 2012-2014
- * Version: 1.0.0
+ * Copyright (c) 2012-2015
+ * Version: 1.1.0
  * Author: Daniel Fernandez Arias @dfernandeza
  *
  * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
@@ -19,7 +19,7 @@
         this.top = conf.top;
         this.left = conf.left;
         this.tooltip = null;
-        this.open = false;
+        this.open = conf.open;
     };
 
     /**
@@ -260,7 +260,7 @@
         this.init = function (options) {
             opts = $.extend({}, $.fn.pictip.options, options);
             this.destroy(); // init a clean instance
-            var i = 0, $spots = [], $tooltips = [],
+            var i = 0, j = 0, $spots = [], $tooltips = [],
                 spotTemplate = $(opts.spotTemplate).addClass(opts.spotClass.replace('.', '')),
                 spot = null,
                 $spot = null,
@@ -280,6 +280,14 @@
 
             $el.find(opts.spotClass).fadeIn(200); // show spots
             attachEventHandlers.call(this);
+
+            // Open by default tooltips (spots marked as open:true)
+            for (j = 0; j < spots.length; j++) {
+                if (spots[j].open) {
+                    spots[j].openToolTip($el, opts.show, opts.onShowToolTip);
+                }
+            }
+
         };
         // Expose the instance
         $el.data('pictip', this);

@@ -34,7 +34,7 @@
 		spots: [
 			{top: '10%', left: '38%', content: contents.seat, tooltipPosition:'br'},
 			{top: '12%', left: '77%', content: contents.handlebar, tooltipPosition:'bl'},
-			{top: '52%', left: '63%', content: contents.tire, tooltipPosition:'bl'}
+			{top: '52%', left: '63%', content: contents.tire, tooltipPosition:'bl', open: true} // Use open: true to open the tooltip on page load
 		],
 		// Functions onShowToolTip and onCloseToolTip are not executed if show and close functions are defined
 		// Use CSS transitions if they are available
