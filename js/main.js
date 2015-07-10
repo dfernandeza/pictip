@@ -1,3 +1,5 @@
+'use strict';
+
 (function (root, $) {
 
 	// You can use a JSON file to store your content or

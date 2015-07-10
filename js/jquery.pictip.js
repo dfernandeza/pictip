@@ -32,8 +32,7 @@
         return $template.clone().css({
             position: 'absolute',
             top: this.top,
-            left: this.left,
-            display: 'none'
+            left: this.left
         }).addClass('spot-' + index).data({
             'index': index
         });
@@ -277,8 +276,6 @@
                 $tooltips.push($tooltip);
             }
             $el.append($spots, $tooltips);
-
-            $el.find(opts.spotClass).fadeIn(200); // show spots
             attachEventHandlers.call(this);
 
             // Open by default tooltips (spots marked as open:true)
