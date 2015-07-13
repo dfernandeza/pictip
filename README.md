@@ -20,7 +20,7 @@ Features
 
 Getting Started
 ---------------
-- Include the jQuery library and the PicTip plugin on your page. It can also be installed using [Bower](http://bower.io/) or [npm](https://www.npmjs.com/package/pictip):
+- Include the jQuery library and the PicTip plugin on your page. It can also be installed using [Bower](http://bower.io/) or [npm](https://www.npmjs.com/package/jquery-pictip):
 ```
 bower install jquery-pictip
 ```
