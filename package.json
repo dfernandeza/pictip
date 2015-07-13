@@ -1,5 +1,5 @@
 {
-  "name": "pictip",
+  "name": "jquery-pictip",
   "version": "1.1.0",
   "description": "Add handy tooltips to your images, slideshows, sliders and more",
   "main": "Gruntfile.js",
@@ -16,7 +16,8 @@
     "images",
     "jquery-plugin",
     "annotations",
-    "media"
+    "media",
+    "ecosystem:jquery"
   ],
   "author": "Daniel Fernandez",
   "license": "MIT and GPL",
